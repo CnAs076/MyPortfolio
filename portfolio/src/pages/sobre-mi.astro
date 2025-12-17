@@ -1,0 +1,101 @@
+---
+// src/pages/sobre-mi.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import miFoto from '../assets/Yo.JPG'; // Reutilizamos tu foto
+---
+
+<Layout title="Sobre Mí | Jorge - Desarrollador & Maker">
+    
+    <section class="relative pt-32 pb-12 overflow-hidden bg-blue-50 dark:bg-gray-950">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
+                Más allá del <span class="text-blue-600">Código</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Ingeniero de software, maker y apasionado por resolver problemas complejos con soluciones sencillas.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                
+                <div class="space-y-8">
+                    <div class="relative w-full max-w-md mx-auto md:mx-0 aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 border border-slate-200 dark:border-gray-800 rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <Image 
+                            src={miFoto} 
+                            alt="David trabajando" 
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <div class="prose prose-lg prose-slate dark:prose-invert text-slate-700 dark:text-gray-300">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Mi Historia</h3>
+                        <p>
+                            Todo empezó con la curiosidad de saber cómo funcionaban las cosas por dentro. Desde desmontar juguetes electrónicos hasta escribir mis primeras líneas de código, siempre supe que mi camino estaba en la creación tecnológica.
+                        </p>
+                        <p>
+                            Me defino como un <strong>Maker</strong>. No me conformo con la teoría; necesito construir, probar y ver cómo el software impacta en el mundo real. Esa mentalidad es la que aplico a cada proyecto: buscar la solución más eficiente y funcional.
+                        </p>
+                        <p>
+                            Hoy en día, combino la robustez de <strong>Java</strong> en el backend con la agilidad del desarrollo web moderno. Siempre estoy buscando el siguiente reto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-gray-800/50 p-8 rounded-3xl border border-slate-200 dark:border-gray-700 sticky top-24">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+                        <span class="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg">🛠️</span>
+                        Mi Arsenal Técnico
+                    </h3>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Backend & Core</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Java</span>
+                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Spring Boot</span>
+                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Hibernate</span>
+                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Microservicios</span>
+                                <span class="badge-skill bg-blue-50 text-blue-600 border-blue-100">SQL</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Frontend Moderno</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">Astro</span>
+                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">Tailwind CSS</span>
+                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">JavaScript (ES6+)</span>
+                                <span class="badge-skill bg-emerald-50 text-emerald-600 border-emerald-100">HTML5/CSS3</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Herramientas & Maker</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Git / GitHub</span>
+                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Docker</span>
+                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Arduino / IoT</span>
+                                <span class="badge-skill bg-purple-50 text-purple-600 border-purple-100">Linux</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .badge-skill {
+            @apply px-4 py-2 rounded-xl text-sm font-semibold border transition-all hover:scale-105 cursor-default dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600;
+        }
+    </style>
+
+</Layout>
