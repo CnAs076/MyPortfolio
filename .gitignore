@@ -1,17 +1,49 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://maven.apache.org/wrapper/#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+# --- SISTEMA OPERATIVO Y EDITOR ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
+# --- SEGURIDAD Y SECRETOS ---
+.env
+.env.*
+*.pem
+*.key
+*.crt
+docker-compose.override.yml
+
+# --- LOGS GENERALES ---
+logs/
+*.log
+
+# --- NODE.JS / ASTRO (Tu Portfolio) ---
+# Ignora las dependencias y los builds en cualquier subcarpeta
+node_modules/
+dist/
+.astro/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- JAVA / MAVEN (Futuros proyectos) ---
+# Ignora los compilados y empaquetados
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Archivos de proyecto generados por IDEs de Java (opcional pero recomendado)
 .classpath
+.project
+.settings/
+*.iml
+
+# --- DOCKER ---
+# Si mapeas volúmenes locales para bases de datos, ignóralos
+mysql_data/
+postgres_data/

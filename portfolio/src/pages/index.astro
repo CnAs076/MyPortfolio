@@ -1,0 +1,68 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+// CAMBIO AQUÍ: El nombre exacto del archivo, respetando mayúsculas
+import miFoto from '../assets/Yo.JPG';
+---
+
+<Layout title="Mi Portfolio | Desarrollador Web">
+	
+	<section class="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-200/60 via-blue-100/40 to-blue-50 dark:from-blue-900/20 dark:to-gray-950">
+		
+		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/30 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20">
+            
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
+                    Hola, soy <span class="bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text">David</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-700 dark:text-gray-400 mb-8 leading-relaxed">
+                    Un desarrollador apasionado por construir experiencias web útiles y amigables.
+                    Me encanta encontrar el equilibrio entre un backend sólido y un frontend intuitivo.
+                </p>
+                
+                <div class="flex gap-4 flex-wrap justify-center md:justify-start">
+                    <a href="#proyectos" class="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-500/40 hover:scale-105 flex items-center gap-2">
+                        Ver Proyectos
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="#contacto" class="px-8 py-3 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-50 transition border border-blue-200 shadow-sm hover:shadow-md dark:bg-gray-800 dark:text-white dark:border-gray-700">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex-1 flex justify-center md:justify-end">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl shadow-blue-500/20 dark:shadow-blue-900/30 z-10">
+                    <Image 
+                        src={miFoto} 
+                        alt="Foto de perfil de David" 
+                        class="w-full h-full object-cover"
+                        width={400}
+                        height={400}
+                        loading="eager"
+                    />
+                </div>
+            </div>
+
+        </div>
+	</section>
+
+	<section id="proyectos" class="py-24 bg-white/80 dark:bg-gray-900 border-t border-blue-200 dark:border-gray-800 transition-colors duration-300">
+		<div class="container mx-auto px-6">
+            <div class="flex flex-col items-center mb-16">
+                <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2">Portfolio</span>
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white text-center">Proyectos Destacados</h2>
+            </div>
+			<div class="p-12 border border-dashed border-blue-300 dark:border-gray-700 rounded-2xl bg-blue-50/50 dark:bg-gray-800/50 text-center text-slate-500 dark:text-gray-400">
+                <p class="text-lg">🚧 Aquí cargaremos tus tarjetas de proyectos pronto...</p>
+			</div>
+		</div>
+	</section>
+
+</Layout>
