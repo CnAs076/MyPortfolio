@@ -20,7 +20,7 @@ export const ui = {
     'btn.contact': 'Contactar',
     
     // Textos generales (Footer, etc.)
-    'footer.rights': 'Desarrollado con Astro y mucho café.',
+    'footer.rights': 'Todos los derechos reservados',
     'projects.title': 'Proyectos Destacados',
     'projects.subtitle': 'Portfolio'
   },
@@ -36,7 +36,7 @@ export const ui = {
     'btn.contact': 'Contact Me',
     
     // General Text
-    'footer.rights': 'Developed with Astro and lots of coffee.',
+    'footer.rights': 'All rights reserved',
     'projects.title': 'Featured Projects',
     'projects.subtitle': 'Portfolio'
   },

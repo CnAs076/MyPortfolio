@@ -1,8 +1,8 @@
 ---
 // src/pages/en/index.astro
-import Layout from '../../layouts/Layout.astro'; // Nota: subimos dos niveles (../../) porque estamos en /pages/en/
+import Layout from '../../layouts/Layout.astro'; 
 import { Image } from 'astro:assets';
-// Tus imágenes (importadas desde la misma ubicación)
+// Imágenes
 import miFoto from '../../assets/Yo.JPG';
 import euskal from '../../assets/euskal.jpeg';
 import pasapalabra from '../../assets/pasapalabracompleto.jpeg';
@@ -106,6 +106,7 @@ const PROJECTS = [
                                 src={project.image} 
                                 alt={project.title} 
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                loading="eager"
                             />
                             <div class="absolute top-4 right-4 z-20">
                                 <span class="px-3 py-1 text-xs font-bold text-white bg-gray-900/80 backdrop-blur-sm rounded-full border border-gray-700">
