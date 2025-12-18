@@ -1,0 +1,16 @@
+---
+// src/components/LanguagePicker.astro
+import { languages } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+// Obtenemos la ruta actual para intentar redirigir a la misma página traducida
+// Nota: Esto es simple si las URLs son idénticas (/es/blog -> /en/blog). 
+// Si cambias slugs (/es/sobre-mi -> /en/about), necesitarás lógica extra.
+---
+<div class="flex gap-2">
+  {Object.entries(languages).map(([lang, label]) => (
+    <a href={`/${lang}/`} class="text-sm font-bold uppercase hover:text-blue-600">
+        {lang}
+    </a>
+  ))}
+</div>
