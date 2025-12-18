@@ -1,21 +1,21 @@
 ---
-// src/pages/sobre-mi.astro
+// src/pages/en/about-me.astro
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import euskal from '../../assets/euskal.jpeg'; 
 ---
 
-<Layout title="Sobre Mí | Jorge - Desarrollador & Maker">
+<Layout title="About Me | Jorge - Developer & Maker">
     
     <section class="relative pt-32 pb-12 overflow-hidden bg-blue-50 dark:bg-gray-950">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
         
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
-                Más allá del <span class="text-blue-600">Código</span>
+                Beyond the <span class="text-blue-600">Code</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Una mirada a mi trayectoria, mis aprendizajes y mi visión tecnológica.
+                A look at my journey, my learnings, and my technological vision.
             </p>
         </div>
     </section>
@@ -23,7 +23,6 @@ import euskal from '../../assets/euskal.jpeg';
     <section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="container mx-auto px-6">
             
-            {/* CAMBIO AQUÍ: Eliminé 'items-start' para que las columnas tengan la misma altura y el sticky funcione */}
             <div class="grid md:grid-cols-12 gap-12">
                 
                 <div class="md:col-span-7 space-y-12">
@@ -31,7 +30,7 @@ import euskal from '../../assets/euskal.jpeg';
                     <div class="relative w-full max-w-md mx-auto md:mx-0 aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 border border-slate-200 dark:border-gray-800 mb-12 rotate-1 hover:rotate-0 transition-transform duration-500">
                         <Image 
                             src={euskal} 
-                            alt="Foto de jorge" 
+                            alt="Photo of Jorge" 
                             class="w-full h-full object-cover"
                         />
                     </div>
@@ -41,57 +40,55 @@ import euskal from '../../assets/euskal.jpeg';
                         <div class="relative pl-8 md:pl-12 group">
                             <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
                             
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Origen</h3>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Origin</h3>
                             <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Desde pequeño, siempre he mostrado interés en saber por qué funcionan las cosas. La tecnología en concreto, siempre me pareció magia: el hecho de poder hablar con alguien que está en la otra punta del mundo, el poder controlar un personaje en un videojuego... 
-                                En el instituto, esa "magia" se transformó en lógica: empecé a entender el <em>porqué</em> detrás de las cosas.
+                                Since I was little, I've always been interested in knowing why things work. Technology, in particular, always seemed like magic to me: being able to talk to someone on the other side of the world, controlling a character in a video game...
+                                In high school, that "magic" transformed into logic: I started to understand the <em>why</em> behind things.
                             </p>
                         </div>
 
                         <div class="relative pl-8 md:pl-12 group">
                             <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
                             
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">2018: Punto de Inflexión</h3>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">2018: Turning Point</h3>
                             <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Montar mi primer ordenador fue el detonante. Ver cómo los componentes físicos se coordinaban para ejecutar aplicaciones complejas me pareció increíble. Pero lo más fascinante fue darme cuenta de que todo eso lo habían diseñado personas como tú y como yo. Ahí decidí mi camino.
-                            </p>
-                        </div>
-
-                        <div class="relative pl-8 md:pl-12 group">
-                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400"></span>
-                            
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Maker como filosofía</h3>
-                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                En 2021 me regalaron una impresora 3D. Gracias a esto, pude aprender a calibrarla, mantenerla y utilizarla para los proyectos que iría desarrollando posteriormente. En 2º de carrera, comencé a interesarme mucho por la electrónica y comencé a hacer mis primeros experimentos por mi cuenta con microcontroladores.
+                                Building my first computer was the trigger. Seeing how physical components coordinated to execute complex applications seemed incredible to me. But the most fascinating thing was realizing that all of that had been designed by people like you and me. That's when I decided my path.
                             </p>
                         </div>
 
                         <div class="relative pl-8 md:pl-12 group">
                             <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
                             
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Formación tecnológica y Experiencia</h3>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Maker as a Philosophy</h3>
                             <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Actualmente tengo <strong>21 años</strong> y estoy acabando el grado de <strong>Ingeniería Informática</strong>. Una de mis mejores decisiones fue unirme al cuerpo de becarios de la universidad: no solo mejoré técnicamente, sino que desarrollé habilidades transversales clave trabajando con gente increíble.
+                                In 2021, I was gifted a 3D printer. Thanks to this, I learned how to calibrate, maintain, and use it for projects I would develop later. In my second year of university, I became very interested in electronics and started doing my first experiments on my own with microcontrollers.
                             </p>
                         </div>
 
-                        
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Education & Experience</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                I am currently <strong>21 years old</strong> and finishing my <strong>Computer Engineering</strong> degree. One of my best decisions was joining the university's internship program: not only did I improve technically, but I also developed key soft skills working with incredible people.
+                            </p>
+                        </div>
 
                         <div class="relative pl-8 md:pl-12 group">
                             <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.3)]"></span>
                             
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">¿Que viene después?</h3>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">What comes next?</h3>
                             <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Iniciaré 2026 uniéndome al equipo de <strong>MasOrange</strong>, gracias a la confianza de uno de mis referentes académicos. Allí, desarrollaré un servidor de modelo de contexto (MCP) para la integración de modelos de lenguaje en su sistema orientado a eventos.
+                                I will start 2026 by joining the <strong>MasOrange</strong> team, thanks to the trust of one of my academic mentors. There, I will develop a Model Context Protocol (MCP) server for integrating language models into their event-driven system.
                             </p>
                             <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Me siento afortunado de haber encontrado una vocación que me apasiona. La informática me permite unir lógica y creatividad para resolver problemas, y me motiva saber que en esta profesión el aprendizaje nunca termina. Estoy listo para todo lo que viene.
+                                I feel fortunate to have found a vocation that I am passionate about. Computer science allows me to combine logic and creativity to solve problems, and it motivates me to know that in this profession, learning never ends. I am ready for everything that is coming.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* COLUMNA DERECHA: STICKY CON STACK ACTUALIZADO */}
+                {/* RIGHT COLUMN: STICKY WITH UPDATED STACK */}
                 <div class="md:col-span-5 relative">
                     <div class="sticky top-24">
                         <div class="bg-slate-50 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-200 dark:border-gray-700 shadow-xl dark:shadow-blue-900/5 transition-all">
@@ -101,31 +98,31 @@ import euskal from '../../assets/euskal.jpeg';
                                 </span>
                                 <div>
                                     <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">
-                                        Mi Arsenal Técnico
+                                        My Tech Arsenal
                                     </h3>
-                                    <p class="text-sm text-slate-500 dark:text-gray-400">Stack & Herramientas</p>
+                                    <p class="text-sm text-slate-500 dark:text-gray-400">Stack & Tools</p>
                                 </div>
                             </div>
 
                             <div class="space-y-8">
-                                {/* GRUPO 1: Ingeniería de Software */}
+                                {/* GROUP 1: Software Engineering */}
                                 <div class="group">
                                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Ingeniería de Software
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Software Engineering
                                     </h4>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Java</span>
                                         <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">SQL / DB Modeling</span>
                                         <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Python</span>
                                         <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">C#</span>
-                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">MVC / Patrones</span>
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">MVC / Patterns</span>
                                     </div>
                                 </div>
 
-                                {/* GRUPO 2: Sistemas y Redes (Nuevo foco importante) */}
+                                {/* GROUP 2: Systems & Networks */}
                                 <div class="group">
                                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Sistemas & Redes
+                                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Systems & Networks
                                     </h4>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="badge-skill bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800">Linux</span>
@@ -135,7 +132,7 @@ import euskal from '../../assets/euskal.jpeg';
                                     </div>
                                 </div>
 
-                                {/* GRUPO 3: Maker y Hardware */}
+                                {/* GROUP 3: Maker & Hardware */}
                                 <div class="group">
                                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                                         <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Maker & Embedded
@@ -148,10 +145,10 @@ import euskal from '../../assets/euskal.jpeg';
                                     </div>
                                 </div>
 
-                                {/* GRUPO 4: Frontend */}
+                                {/* GROUP 4: Web Development */}
                                 <div class="group">
                                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Programación web
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Web Development
                                     </h4>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Astro</span>

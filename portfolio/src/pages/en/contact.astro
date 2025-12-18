@@ -1,19 +1,19 @@
 ---
-// src/pages/contacto.astro
+// src/pages/en/contact.astro
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Contacto | Jorge - Desarrollador & Maker">
+<Layout title="Contact | Jorge - Developer & Maker">
     
     <section class="relative pt-32 pb-12 overflow-hidden bg-blue-50 dark:bg-gray-950">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
         
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4">
-                Iniciemos una <span class="text-blue-600">Conversación</span>
+                Let's Start a <span class="text-blue-600">Conversation</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Ya sea para colaborar en un proyecto, hablar sobre tecnología o simplemente compartir ideas.
+                Whether it's to collaborate on a project, talk about technology, or simply share ideas.
             </p>
         </div>
     </section>
@@ -26,10 +26,10 @@ import Layout from '../../layouts/Layout.astro';
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                            ¿Tienes una idea en mente?
+                            Have an idea in mind?
                         </h3>
                         <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
-                            Siempre estoy abierto a discutir nuevos proyectos, oportunidades de ingeniería o ideas locas de maker. Si te interesa mi perfil, aquí es donde puedes encontrarme.
+                            I'm always open to discussing new projects, engineering opportunities, or crazy maker ideas. If you're interested in my profile, here is where you can find me.
                         </p>
                     </div>
 
@@ -51,7 +51,7 @@ import Layout from '../../layouts/Layout.astro';
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900 dark:text-white">LinkedIn</h4>
-                                <p class="text-sm text-slate-500 dark:text-gray-400">Conectemos profesionalmente</p>
+                                <p class="text-sm text-slate-500 dark:text-gray-400">Connect professionally</p>
                             </div>
                         </a>
 
@@ -61,7 +61,7 @@ import Layout from '../../layouts/Layout.astro';
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900 dark:text-white">GitHub</h4>
-                                <p class="text-sm text-slate-500 dark:text-gray-400">Explora mi código</p>
+                                <p class="text-sm text-slate-500 dark:text-gray-400">Explore my code</p>
                             </div>
                         </a>
 
@@ -71,7 +71,7 @@ import Layout from '../../layouts/Layout.astro';
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900 dark:text-white">Thingiverse</h4>
-                                <p class="text-sm text-slate-500 dark:text-gray-400">Mis diseños 3D</p>
+                                <p class="text-sm text-slate-500 dark:text-gray-400">My 3D designs</p>
                             </div>
                         </a>
 
@@ -84,32 +84,32 @@ import Layout from '../../layouts/Layout.astro';
                             
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
-                                    <label for="nombre" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Nombre</label>
-                                    <input type="text" id="nombre" placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white" />
+                                    <label for="nombre" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Name</label>
+                                    <input type="text" id="nombre" placeholder="Your name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white" />
                                 </div>
                                 <div class="space-y-2">
                                     <label for="email" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Email</label>
-                                    <input type="email" id="email" placeholder="tu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white" />
+                                    <input type="email" id="email" placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white" />
                                 </div>
                             </div>
 
                             <div class="space-y-2">
-                                <label for="asunto" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Asunto</label>
+                                <label for="asunto" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Subject</label>
                                 <select id="asunto" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white">
-                                    <option>Colaboración / Proyecto</option>
-                                    <option>Oportunidad Laboral</option>
+                                    <option>Collaboration / Project</option>
+                                    <option>Job Opportunity</option>
                                     <option>Networking / Maker</option>
-                                    <option>Otro</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
 
                             <div class="space-y-2">
-                                <label for="mensaje" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Mensaje</label>
-                                <textarea id="mensaje" rows="4" placeholder="Cuéntame sobre tu proyecto..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white"></textarea>
+                                <label for="mensaje" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Message</label>
+                                <textarea id="mensaje" rows="4" placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-900 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white"></textarea>
                             </div>
 
                             <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-1">
-                                Enviar Mensaje 🚀
+                                Send Message 🚀
                             </button>
 
                         </form>

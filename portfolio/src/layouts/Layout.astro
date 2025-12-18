@@ -1,6 +1,8 @@
 ---
+// src/layouts/Layout.astro
 import '../styles/global.css';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import LanguagePicker from '../components/LanguagePicker.astro'; // Importamos el selector
 import { useTranslations } from '../i18n/ui';
 
 interface Props {
@@ -8,13 +10,21 @@ interface Props {
     description?: string;
 }
 
+// 1. Detectamos el idioma actual
 const lang = Astro.currentLocale || 'es'; 
 const t = useTranslations(lang as "es" | "en");
+
 const { title, description = "Portfolio de desarrollador" } = Astro.props;
+
+// 2. Lógica de rutas para los enlaces (Define aquí los nombres de tus archivos en inglés)
+const homeUrl = `/${lang}`;
+const projectsUrl = `/${lang}/#proyectos`;
+const aboutUrl = lang === 'es' ? '/es/sobre-mi' : '/en/about-me'; // Asegúrate de llamar al archivo 'about-me.astro' en la carpeta 'en'
+const contactUrl = lang === 'es' ? '/es/contacto' : '/en/contact'; // Asegúrate de llamar al archivo 'contact.astro' en la carpeta 'en'
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content={description} />
@@ -41,18 +51,33 @@ const { title, description = "Portfolio de desarrollador" } = Astro.props;
         
         <header class="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-slate-200 dark:border-gray-800 transition-colors duration-300 shadow-sm">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="/" class="text-xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400 text-transparent bg-clip-text">
+                <a href={homeUrl} class="text-xl font-bold bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400 text-transparent bg-clip-text">
                     Cdev76
                 </a>
                 
                 <div class="flex items-center gap-6">
                     <ul class="flex gap-6 text-sm font-medium text-slate-600 dark:text-gray-300">
-                        <li><a href="/#proyectos" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Proyectos</a></li>
-                        <li><a href="/sobre-mi" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Sobre mí</a></li>
-                        <li><a href="/contacto" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contacto</a></li>
+                        <li>
+                            <a href={projectsUrl} class="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                                {t('nav.projects')}
+                            </a>
+                        </li>
+                        <li>
+                            <a href={aboutUrl} class="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                                {t('nav.about')}
+                            </a>
+                        </li>
+                        <li>
+                            <a href={contactUrl} class="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                                {t('nav.contact')}
+                            </a>
+                        </li>
                     </ul>
                     
-                    <ThemeToggle />
+                    <div class="flex items-center gap-3 border-l border-slate-200 dark:border-gray-700 pl-4">
+                        <LanguagePicker />
+                        <ThemeToggle />
+                    </div>
                 </div>
             </nav>
         </header>
@@ -63,7 +88,7 @@ const { title, description = "Portfolio de desarrollador" } = Astro.props;
 
         <footer class="py-10 mt-20 border-t border-slate-200 dark:border-gray-800 text-center text-slate-500 dark:text-gray-400 text-sm">
             <div class="container mx-auto px-6">
-                <p>© {new Date().getFullYear()} Cdev76.</p>
+                <p>© {new Date().getFullYear()} Cdev76. {t('footer.rights')}</p>
             </div>
         </footer>
 
