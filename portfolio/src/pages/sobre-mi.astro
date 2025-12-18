@@ -2,7 +2,7 @@
 // src/pages/sobre-mi.astro
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import miFoto from '../assets/Yo.JPG'; // Reutilizamos tu foto
+import euskal from '../assets/euskal.jpeg'; 
 ---
 
 <Layout title="Sobre Mí | Jorge - Desarrollador & Maker">
@@ -15,7 +15,7 @@ import miFoto from '../assets/Yo.JPG'; // Reutilizamos tu foto
                 Más allá del <span class="text-blue-600">Código</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Ingeniero de software, maker y apasionado por resolver problemas complejos con soluciones sencillas.
+                Una mirada a mi trayectoria, mis aprendizajes y mi visión tecnológica.
             </p>
         </div>
     </section>
@@ -23,66 +23,144 @@ import miFoto from '../assets/Yo.JPG'; // Reutilizamos tu foto
     <section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="container mx-auto px-6">
             
-            <div class="grid md:grid-cols-2 gap-16 items-start">
+            {/* CAMBIO AQUÍ: Eliminé 'items-start' para que las columnas tengan la misma altura y el sticky funcione */}
+            <div class="grid md:grid-cols-12 gap-12">
                 
-                <div class="space-y-8">
-                    <div class="relative w-full max-w-md mx-auto md:mx-0 aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 border border-slate-200 dark:border-gray-800 rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="md:col-span-7 space-y-12">
+                    
+                    <div class="relative w-full max-w-md mx-auto md:mx-0 aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 border border-slate-200 dark:border-gray-800 mb-12 rotate-1 hover:rotate-0 transition-transform duration-500">
                         <Image 
-                            src={miFoto} 
-                            alt="David trabajando" 
+                            src={euskal} 
+                            alt="Foto de jorge" 
                             class="w-full h-full object-cover"
                         />
                     </div>
 
-                    <div class="prose prose-lg prose-slate dark:prose-invert text-slate-700 dark:text-gray-300">
-                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Mi Historia</h3>
-                        <p>
-                            Todo empezó con la curiosidad de saber cómo funcionaban las cosas por dentro. Desde desmontar juguetes electrónicos hasta escribir mis primeras líneas de código, siempre supe que mi camino estaba en la creación tecnológica.
-                        </p>
-                        <p>
-                            Me defino como un <strong>Maker</strong>. No me conformo con la teoría; necesito construir, probar y ver cómo el software impacta en el mundo real. Esa mentalidad es la que aplico a cada proyecto: buscar la solución más eficiente y funcional.
-                        </p>
-                        <p>
-                            Hoy en día, combino la robustez de <strong>Java</strong> en el backend con la agilidad del desarrollo web moderno. Siempre estoy buscando el siguiente reto.
-                        </p>
+                    <div class="relative border-l-2 border-slate-200 dark:border-gray-800 ml-3 md:ml-6 space-y-16">
+                        
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Origen</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Desde pequeño, siempre he mostrado interés en saber por qué funcionan las cosas. La tecnología en concreto, siempre me pareció magia: el hecho de poder hablar con alguien que está en la otra punta del mundo, el poder controlar un personaje en un videojuego... 
+                                En el instituto, esa "magia" se transformó en lógica: empecé a entender el <em>porqué</em> detrás de las cosas.
+                            </p>
+                        </div>
+
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">2018: Punto de Inflexión</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Montar mi primer ordenador fue el detonante. Ver cómo los componentes físicos se coordinaban para ejecutar aplicaciones complejas me pareció increíble. Pero lo más fascinante fue darme cuenta de que todo eso lo habían diseñado personas como tú y como yo. Ahí decidí mi camino.
+                            </p>
+                        </div>
+
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Maker como filosofía</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                En 2021 me regalaron una impresora 3D. Gracias a esto, pude aprender a calibrarla, mantenerla y utilizarla para los proyectos que iría desarrollando posteriormente. En 2º de carrera, comencé a interesarme mucho por la electrónica y comencé a hacer mis primeros experimentos por mi cuenta con microcontroladores.
+                            </p>
+                        </div>
+
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-blue-500 group-hover:bg-blue-400 transition-colors"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Formación tecnológica y Experiencia</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Actualmente tengo <strong>21 años</strong> y estoy acabando el grado de <strong>Ingeniería Informática</strong>. Una de mis mejores decisiones fue unirme al cuerpo de becarios de la universidad: no solo mejoré técnicamente, sino que desarrollé habilidades transversales clave trabajando con gente increíble.
+                            </p>
+                        </div>
+
+                        
+
+                        <div class="relative pl-8 md:pl-12 group">
+                            <span class="absolute -left-[9px] top-1 h-5 w-5 rounded-full border-4 border-white dark:border-gray-900 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.3)]"></span>
+                            
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">¿Que viene después?</h3>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Iniciaré 2026 uniéndome al equipo de <strong>MasOrange</strong>, gracias a la confianza de uno de mis referentes académicos. Allí, desarrollaré un servidor de modelo de contexto (MCP) para la integración de modelos de lenguaje en su sistema orientado a eventos.
+                            </p>
+                            <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Me siento afortunado de haber encontrado una vocación que me apasiona. La informática me permite unir lógica y creatividad para resolver problemas, y me motiva saber que en esta profesión el aprendizaje nunca termina. Estoy listo para todo lo que viene.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 dark:bg-gray-800/50 p-8 rounded-3xl border border-slate-200 dark:border-gray-700 sticky top-24">
-                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
-                        <span class="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg">🛠️</span>
-                        Mi Arsenal Técnico
-                    </h3>
-
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Backend & Core</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Java</span>
-                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Spring Boot</span>
-                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Hibernate</span>
-                                <span class="badge-skill bg-blue-100 text-blue-800 border-blue-200">Microservicios</span>
-                                <span class="badge-skill bg-blue-50 text-blue-600 border-blue-100">SQL</span>
+                {/* COLUMNA DERECHA: STICKY CON STACK ACTUALIZADO */}
+                <div class="md:col-span-5 relative">
+                    <div class="sticky top-24">
+                        <div class="bg-slate-50 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-200 dark:border-gray-700 shadow-xl dark:shadow-blue-900/5 transition-all">
+                            <div class="flex items-center gap-3 mb-8 pb-6 border-b border-slate-200 dark:border-gray-700">
+                                <span class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-xl shadow-lg shadow-blue-500/30 text-xl">
+                                    🛠️
+                                </span>
+                                <div>
+                                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">
+                                        Mi Arsenal Técnico
+                                    </h3>
+                                    <p class="text-sm text-slate-500 dark:text-gray-400">Stack & Herramientas</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Frontend Moderno</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">Astro</span>
-                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">Tailwind CSS</span>
-                                <span class="badge-skill bg-emerald-100 text-emerald-800 border-emerald-200">JavaScript (ES6+)</span>
-                                <span class="badge-skill bg-emerald-50 text-emerald-600 border-emerald-100">HTML5/CSS3</span>
-                            </div>
-                        </div>
+                            <div class="space-y-8">
+                                {/* GRUPO 1: Ingeniería de Software */}
+                                <div class="group">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Ingeniería de Software
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Java</span>
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">SQL / DB Modeling</span>
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Python</span>
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">C#</span>
+                                        <span class="badge-skill bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">MVC / Patrones</span>
+                                    </div>
+                                </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Herramientas & Maker</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Git / GitHub</span>
-                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Docker</span>
-                                <span class="badge-skill bg-purple-100 text-purple-800 border-purple-200">Arduino / IoT</span>
-                                <span class="badge-skill bg-purple-50 text-purple-600 border-purple-100">Linux</span>
+                                {/* GRUPO 2: Sistemas y Redes (Nuevo foco importante) */}
+                                <div class="group">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Sistemas & Redes
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="badge-skill bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800">Linux</span>
+                                        <span class="badge-skill bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800">Docker</span>
+                                        <span class="badge-skill bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800">Wireshark</span>
+                                        <span class="badge-skill bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800">Packet Tracer</span>
+                                    </div>
+                                </div>
+
+                                {/* GRUPO 3: Maker y Hardware */}
+                                <div class="group">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Maker & Embedded
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="badge-skill bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">Raspberry / ESP32</span>
+                                        <span class="badge-skill bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">C / C++</span>
+                                        <span class="badge-skill bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">SketchUp / 3D</span>
+                                        <span class="badge-skill bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">Hardware</span>
+                                    </div>
+                                </div>
+
+                                {/* GRUPO 4: Frontend */}
+                                <div class="group">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Programación web
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Astro</span>
+                                        <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">JavaScript</span>
+                                        <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Tailwind</span>
+                                        <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Bootstrap</span>
+                                        <span class="badge-skill bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Primefaces</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +172,7 @@ import miFoto from '../assets/Yo.JPG'; // Reutilizamos tu foto
 
     <style>
         .badge-skill {
-            @apply px-4 py-2 rounded-xl text-sm font-semibold border transition-all hover:scale-105 cursor-default dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600;
+            @apply px-3 py-1.5 rounded-lg text-sm font-semibold border transition-all hover:scale-105 cursor-default;
         }
     </style>
 
