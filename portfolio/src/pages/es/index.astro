@@ -7,6 +7,7 @@ import miFoto from '../../assets/Yo.JPG';
 import euskal from '../../assets/euskal.jpeg'; // Imagen placeholder para proyectos
 import picoduckyv1 from '../../assets/picoduckyv1.jpg'
 import pasapalabra from '../../assets/pasapalabracompleto.jpeg'
+import mcp from '../../assets/mcp.png';
 
 // --- DATOS DE PROYECTOS ---
 
@@ -35,13 +36,15 @@ const PROJECTS = [
         statusColor: "bg-amber-500/90"
     },
     {
-        title: "Simulación de Red Corporativa",
-        description: "Diseño y configuración completa de una red empresarial en Packet Tracer. Incluye configuración de VLANs, enrutamiento OSPF y listas de control de acceso (ACLs).",
-        tags: ["Networking", "Cisco Packet Tracer", "VLANs", "OSPF"],
-        image: euskal,
+        title: "Mi primer servidor MCP",
+        description: "Servidor mcp sencillo que expone una tool al LLM Claude sobre la temperatura de mi CPU. Incluye una pequeña api desarrollada con la librería Python FastAPI para exponer un endpoint que utilizará el MCP. Se necesita una API key de Claude para poder probarlo, mas detalles en mi github.",
+        tags: ["MCP","Python","APIs","LLMs"],
+        image: mcp,
         github: null, 
         demo: null,
-        category: "Sistemas"
+        category: "Software - AI",
+        status: "Terminado",
+        statusColor: "bg-emerald-500/90"
     }
 ];
 ---
