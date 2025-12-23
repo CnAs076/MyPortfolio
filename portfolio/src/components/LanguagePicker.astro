@@ -1,25 +1,40 @@
 ---
 // src/components/LanguagePicker.astro
 import { languages } from '../i18n/ui';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const currentLang = Astro.currentLocale || 'es';
 const currentPath = Astro.url.pathname;
 
-// Lógica para traducir rutas (mismo código que teníamos antes)
+/**
+ * DICCIONARIO DE RUTAS
+ */
 const routeTranslations: Record<string, Record<string, string>> = {
-  es: { 'sobre-mi': 'about-me', 'contacto': 'contact' },
-  en: { 'about-me': 'sobre-mi', 'contact': 'contacto' }
+  es: {
+    'sobre-mi': 'about-me',
+    'contacto': 'contact',
+    'comprueba-spam': 'spam-checker'
+  },
+  en: {
+    'about-me': 'sobre-mi',
+    'contact': 'contacto',
+    'spam-checker': 'comprueba-spam'
+  }
 };
 
 function getLocalizedPath(targetLang: string) {
   const langPrefix = `/${currentLang}`;
+
   if (currentPath === langPrefix || currentPath === `${langPrefix}/`) {
     return `/${targetLang}/`;
   }
+
   let slug = currentPath.replace(`/${currentLang}/`, '').replace(/\/$/, '');
   const translatedSlug = routeTranslations[currentLang]?.[slug];
-  if (translatedSlug) return `/${targetLang}/${translatedSlug}`;
+
+  if (translatedSlug) {
+    return `/${targetLang}/${translatedSlug}`;
+  }
+  
   return `/${targetLang}/${slug}`;
 }
 
@@ -29,17 +44,17 @@ const langLabels = {
 };
 ---
 
-<div class="relative language-picker-component text-left inline-block">
+<div class="relative ml-2 text-left language-dropdown-component">
     
     <button 
         type="button" 
-        class="lang-btn inline-flex items-center justify-center w-full gap-2 px-3 py-2 text-sm font-medium text-slate-700 bg-white dark:bg-gray-800 dark:text-gray-200 border border-slate-200 dark:border-gray-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-gray-700 focus:outline-none transition-all"
+        class="lang-menu-btn inline-flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-white dark:bg-gray-800 dark:text-gray-200 border border-slate-200 dark:border-gray-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-gray-700 focus:outline-none transition-all"
         aria-expanded="false" 
         aria-haspopup="true"
     >
-        <span class="text-lg">{langLabels[currentLang as keyof typeof langLabels].flag}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-500 dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
         <span class="uppercase">{currentLang}</span>
-        <svg class="w-4 h-4 ml-1 -mr-1 text-slate-500 transition-transform duration-200 lang-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <svg class="lang-chevron w-4 h-4 ml-1 -mr-1 text-slate-500 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
         </svg>
     </button>
@@ -47,8 +62,9 @@ const langLabels = {
     <div 
         class="lang-menu hidden absolute right-0 z-50 mt-2 w-40 origin-top-right rounded-xl bg-white dark:bg-gray-900 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none border border-slate-100 dark:border-gray-800 transform transition-all duration-200 opacity-0 scale-95"
         role="menu" 
+        tabindex="-1"
     >
-        <div class="py-1">
+        <div class="py-1" role="none">
             {Object.entries(languages).map(([lang, label]) => (
                 <a 
                     href={getLocalizedPath(lang)} 
@@ -59,6 +75,7 @@ const langLabels = {
                             : 'text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800'
                         }
                     `}
+                    role="menuitem"
                 >
                     <span class="mr-3 text-lg">{langLabels[lang as keyof typeof langLabels].flag}</span>
                     {label}
@@ -69,18 +86,19 @@ const langLabels = {
 </div>
 
 <script>
-    // Buscamos TODOS los componentes de idioma en la página (escritorio y móvil)
-    const pickers = document.querySelectorAll('.language-picker-component');
+    // Buscamos TODOS los selectores de idioma en la página (escritorio y móvil)
+    const dropdowns = document.querySelectorAll('.language-dropdown-component');
 
-    pickers.forEach(picker => {
-        const button = picker.querySelector('.lang-btn');
-        const menu = picker.querySelector('.lang-menu');
-        const chevron = picker.querySelector('.lang-chevron');
+    dropdowns.forEach(dropdown => {
+        const button = dropdown.querySelector('.lang-menu-btn');
+        const menu = dropdown.querySelector('.lang-menu');
+        const chevron = dropdown.querySelector('.lang-chevron');
 
         if (button && menu && chevron) {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
-                // Cerramos otros menús abiertos por seguridad
+                
+                // Cerramos otros menús que pudieran estar abiertos
                 document.querySelectorAll('.lang-menu').forEach(m => {
                     if (m !== menu) m.classList.add('hidden', 'opacity-0', 'scale-95');
                 });
@@ -101,16 +119,21 @@ const langLabels = {
                     menu.classList.remove('opacity-100', 'scale-100');
                     menu.classList.add('opacity-0', 'scale-95');
                     chevron.classList.remove('rotate-180');
-                    setTimeout(() => menu.classList.add('hidden'), 100);
+                    setTimeout(() => {
+                        menu.classList.add('hidden');
+                    }, 100);
                 }
             });
         }
     });
 
-    // Cerrar al hacer clic fuera
+    // Cerrar al hacer click fuera en cualquier parte de la página
     document.addEventListener('click', () => {
         document.querySelectorAll('.lang-menu').forEach(menu => {
             menu.classList.add('hidden', 'opacity-0', 'scale-95');
+        });
+        document.querySelectorAll('.lang-menu-btn').forEach(btn => {
+            btn.setAttribute('aria-expanded', 'false');
         });
         document.querySelectorAll('.lang-chevron').forEach(chevron => {
             chevron.classList.remove('rotate-180');
