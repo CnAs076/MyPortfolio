@@ -1,9 +1,8 @@
 ---
-// src/pages/en/spamchecker.astro (o como hayas nombrado el archivo en inglés)
 import Layout from '../../layouts/Layout.astro';
 import { useTranslations } from '../../i18n/ui';
 
-// 1. Detectamos el idioma (en este caso será 'en')
+// 1. Detectar idioma actual (automático según la carpeta)
 const lang = Astro.currentLocale || 'es';
 const t = useTranslations(lang as "es" | "en");
 
@@ -27,6 +26,30 @@ const description = t('spam.desc');
         <div class="w-full max-w-3xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl shadow-blue-900/10 dark:shadow-black/50 border border-slate-200 dark:border-gray-800 overflow-hidden relative">
             
             <div class="p-8 md:p-10 space-y-8">
+
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <button 
+                        type="button" 
+                        id="btn-fill-spam"
+                        data-subject={t('spam.ex_spam_subject')}
+                        data-message={t('spam.ex_spam_message')}
+                        class="px-4 py-2 text-xs font-bold text-red-600 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 hover:-translate-y-0.5 transition-all dark:bg-red-900/20 dark:text-red-300 dark:border-red-800 flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        {t('spam.btn_load_spam')}
+                    </button>
+
+                    <button 
+                        type="button" 
+                        id="btn-fill-ham"
+                        data-subject={t('spam.ex_ham_subject')}
+                        data-message={t('spam.ex_ham_message')}
+                        class="px-4 py-2 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-lg hover:bg-emerald-100 hover:-translate-y-0.5 transition-all dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800 flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        {t('spam.btn_load_ham')}
+                    </button>
+                </div>
                 
                 <form id="spam-form" class="space-y-6">
                     
@@ -122,7 +145,28 @@ const description = t('spam.desc');
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const resultArea = document.getElementById('result-area');
     
-    // Recuperamos las traducciones desde el HTML
+    // --- LÓGICA DE LOS BOTONES DE EJEMPLO ---
+    const btnSpam = document.getElementById('btn-fill-spam');
+    const btnHam = document.getElementById('btn-fill-ham');
+    const asuntoInput = document.getElementById('asunto') as HTMLInputElement;
+    const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement;
+
+    if (btnSpam && btnHam) {
+        btnSpam.addEventListener('click', () => {
+            // Leemos los datos guardados en el HTML (data-subject, data-message)
+            asuntoInput.value = btnSpam.dataset.subject || '';
+            mensajeInput.value = btnSpam.dataset.message || '';
+            mensajeInput.focus();
+        });
+
+        btnHam.addEventListener('click', () => {
+            asuntoInput.value = btnHam.dataset.subject || '';
+            mensajeInput.value = btnHam.dataset.message || '';
+            mensajeInput.focus();
+        });
+    }
+
+    // --- LÓGICA DEL FORMULARIO EXISTENTE ---
     const i18nData = document.getElementById('i18n-data');
     const t_js = i18nData ? i18nData.dataset : {} as DOMStringMap;
 
@@ -134,13 +178,9 @@ const description = t('spam.desc');
 
             const originalBtnText = submitBtn.innerHTML;
             
-            // Texto de carga traducido
             submitBtn.innerHTML = `<span class="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></span> ${t_js.processing || '...'}`;
             submitBtn.disabled = true;
             resultArea.classList.add('hidden');
-
-            const asuntoInput = document.getElementById('asunto') as HTMLInputElement;
-            const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement;
 
             const payload = {
                 subject: asuntoInput.value,
@@ -173,14 +213,12 @@ const description = t('spam.desc');
         const resultArea = document.getElementById('result-area');
         if (!resultArea) return;
 
-        // Recuperar traducciones de nuevo
         const i18nData = document.getElementById('i18n-data');
         const t_js = i18nData ? i18nData.dataset : {} as DOMStringMap;
 
         resultArea.classList.remove('hidden');
 
         if (data.is_spam) {
-            // Diseño ROJO (Spam)
             resultArea.innerHTML = `
                 <div class="p-6 rounded-xl bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
                     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-red-800 dark:text-red-300">
@@ -199,7 +237,6 @@ const description = t('spam.desc');
                 </div>
             `;
         } else {
-            // Diseño VERDE (Ham)
             resultArea.innerHTML = `
                 <div class="p-6 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
                     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-emerald-800 dark:text-emerald-300">
@@ -231,7 +268,7 @@ const description = t('spam.desc');
         resultArea.innerHTML = `
             <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-center text-amber-800 dark:text-amber-200">
                 <p>⚠️ ${t_js.error}</p>
-                <p class="text-sm mt-1 opacity-75">Check console / index.py</p>
+                <p class="text-sm mt-1 opacity-75">Check API connection</p>
             </div>
         `;
     }

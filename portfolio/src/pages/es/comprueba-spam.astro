@@ -1,10 +1,13 @@
 ---
-// src/pages/compruebaspam.astro
 import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
 
-// Metadatos
-const title = "Detector de Spam IA | Cdev76";
-const description = "Herramienta gratuita basada en Machine Learning para detectar si un correo es Spam.";
+// 1. Detectar idioma actual
+const lang = Astro.currentLocale || 'es';
+const t = useTranslations(lang as "es" | "en");
+
+const title = `Cdev76 | ${t('spam.title')}`;
+const description = t('spam.desc');
 ---
 
 <Layout title={title} description={description}>
@@ -13,42 +16,94 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
         
         <div class="text-center max-w-2xl mx-auto mb-12 space-y-4">
             <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Detector de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">Spam</span>
+                {t('spam.title')} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">AI</span>
             </h1>
             <p class="text-lg text-slate-600 dark:text-gray-400 leading-relaxed">
-                Pega el asunto y el mensaje. El modelo lo analizará y comprobará si se trata de spam o es legítimo.
+                {t('spam.desc')}
             </p>
         </div>
 
         <div class="w-full max-w-3xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl shadow-blue-900/10 dark:shadow-black/50 border border-slate-200 dark:border-gray-800 overflow-hidden relative">
             
             <div class="p-8 md:p-10 space-y-8">
+
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <button 
+                        type="button" 
+                        id="btn-fill-spam"
+                        data-subject={t('spam.ex_spam_subject')}
+                        data-message={t('spam.ex_spam_message')}
+                        class="px-4 py-2 text-xs font-bold text-red-600 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 hover:-translate-y-0.5 transition-all dark:bg-red-900/20 dark:text-red-300 dark:border-red-800 flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        {t('spam.btn_load_spam')}
+                    </button>
+
+                    <button 
+                        type="button" 
+                        id="btn-fill-ham"
+                        data-subject={t('spam.ex_ham_subject')}
+                        data-message={t('spam.ex_ham_message')}
+                        class="px-4 py-2 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-lg hover:bg-emerald-100 hover:-translate-y-0.5 transition-all dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800 flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        {t('spam.btn_load_ham')}
+                    </button>
+                </div>
                 
                 <form id="spam-form" class="space-y-6">
                     
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label for="nombre" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Nombre (Opcional)</label>
-                            <input type="text" id="nombre" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="Tu nombre" />
+                            <label for="nombre" class="text-sm font-semibold text-slate-900 dark:text-gray-200">{t('spam.name')}</label>
+                            <input 
+                                type="text" 
+                                id="nombre" 
+                                placeholder={t('spam.ph_name')} 
+                                class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" 
+                            />
                         </div>
                         <div class="space-y-2">
-                            <label for="email" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Email (Opcional)</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="ejemplo@email.com" />
+                            <label for="email" class="text-sm font-semibold text-slate-900 dark:text-gray-200">{t('spam.email')}</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder={t('spam.ph_email')}
+                                class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" 
+                            />
                         </div>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="asunto" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Asunto del Correo <span class="text-red-500">*</span></label>
-                        <input type="text" id="asunto" name="subject" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="Ej: URGENT! You won a cash prize..." />
+                        <label for="asunto" class="text-sm font-semibold text-slate-900 dark:text-gray-200">{t('spam.subject')} <span class="text-red-500">*</span></label>
+                        <input 
+                            type="text" 
+                            id="asunto" 
+                            name="subject" 
+                            required 
+                            placeholder={t('spam.ph_subject')}
+                            class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" 
+                        />
                     </div>
 
                     <div class="space-y-2">
-                        <label for="mensaje" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Cuerpo del Mensaje <span class="text-red-500">*</span></label>
-                        <textarea id="mensaje" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white placeholder-slate-400" placeholder="Copia y pega aquí el contenido del correo sospechoso..."></textarea>
+                        <label for="mensaje" class="text-sm font-semibold text-slate-900 dark:text-gray-200">{t('spam.message')} <span class="text-red-500">*</span></label>
+                        <textarea 
+                            id="mensaje" 
+                            name="message" 
+                            rows="5" 
+                            required 
+                            placeholder={t('spam.ph_message')}
+                            class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white placeholder-slate-400"
+                        ></textarea>
                     </div>
 
-                    <button type="submit" id="submit-btn" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2 text-lg">
-                        <span>Analizar con IA</span> 
+                    <button 
+                        type="submit" 
+                        id="submit-btn" 
+                        class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2 text-lg"
+                    >
+                        <span>{t('spam.analyze_btn')}</span> 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
@@ -62,14 +117,23 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
         </div>
         
         <p class="mt-8 text-sm text-slate-500 dark:text-gray-500 text-center">
-            Nota: Modelo entrenado con dataset en inglés (funciona mejor con Spam internacional).
+            {t('spam.note')}
         </p>
+
+        <div id="i18n-data" hidden
+            data-processing={t('spam.js.processing')}
+            data-spam-alert={t('spam.js.spam_alert')}
+            data-spam-desc={t('spam.js.spam_desc')}
+            data-safe-title={t('spam.js.safe_title')}
+            data-safe-desc={t('spam.js.safe_desc')}
+            data-confidence={t('spam.js.confidence')}
+            data-error={t('spam.js.error')}
+        ></div>
 
     </section>
 </Layout>
 
 <script>
-    // 1. Definimos la Interfaz para solucionar el error de TypeScript
     interface ApiResponse {
         is_spam: boolean;
         label: string;
@@ -80,22 +144,44 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
     const form = document.getElementById('spam-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const resultArea = document.getElementById('result-area');
+    
+    // --- LÓGICA DE LOS BOTONES DE EJEMPLO (NUEVO) ---
+    const btnSpam = document.getElementById('btn-fill-spam');
+    const btnHam = document.getElementById('btn-fill-ham');
+    const asuntoInput = document.getElementById('asunto') as HTMLInputElement;
+    const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement;
 
-    // IMPORTANTE: URL de tu API
+    if (btnSpam && btnHam) {
+        btnSpam.addEventListener('click', () => {
+            // Leemos los datos guardados en el HTML (data-subject, data-message)
+            asuntoInput.value = btnSpam.dataset.subject || '';
+            mensajeInput.value = btnSpam.dataset.message || '';
+            // Efecto visual rápido para que se sepa que ha cambiado
+            mensajeInput.focus();
+        });
+
+        btnHam.addEventListener('click', () => {
+            asuntoInput.value = btnHam.dataset.subject || '';
+            mensajeInput.value = btnHam.dataset.message || '';
+            mensajeInput.focus();
+        });
+    }
+
+    // --- LÓGICA DEL FORMULARIO EXISTENTE ---
+    const i18nData = document.getElementById('i18n-data');
+    const t_js = i18nData ? i18nData.dataset : {} as DOMStringMap;
+
     const API_URL = 'https://spam-api-rose.vercel.app/predict'; 
 
     if (form && submitBtn && resultArea) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // UI Loading
             const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = `<span class="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></span> Procesando...`;
+            
+            submitBtn.innerHTML = `<span class="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></span> ${t_js.processing || '...'}`;
             submitBtn.disabled = true;
             resultArea.classList.add('hidden');
-
-            const asuntoInput = document.getElementById('asunto') as HTMLInputElement;
-            const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement;
 
             const payload = {
                 subject: asuntoInput.value,
@@ -109,9 +195,8 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) throw new Error('Error de conexión con la API');
+                if (!response.ok) throw new Error('Error de conexión');
 
-                // AQUI ESTÁ EL TRUCO: Decimos a TS que la respuesta cumple la interfaz
                 const data = await response.json() as ApiResponse;
                 renderResult(data);
 
@@ -125,15 +210,16 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
         });
     }
 
-    // 2. Aplicamos el tipo ApiResponse al argumento 'data'
     function renderResult(data: ApiResponse) {
         const resultArea = document.getElementById('result-area');
         if (!resultArea) return;
 
+        const i18nData = document.getElementById('i18n-data');
+        const t_js = i18nData ? i18nData.dataset : {} as DOMStringMap;
+
         resultArea.classList.remove('hidden');
 
         if (data.is_spam) {
-            // Diseño ROJO (Spam)
             resultArea.innerHTML = `
                 <div class="p-6 rounded-xl bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
                     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-red-800 dark:text-red-300">
@@ -141,18 +227,17 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold">¡ALERTA DE SPAM!</h3>
-                            <p class="text-sm opacity-90 mt-1">El sistema ha clasificado este mensaje como malicioso o no deseado.</p>
+                            <h3 class="text-xl font-bold">${t_js.spamAlert}</h3>
+                            <p class="text-sm opacity-90 mt-1">${t_js.spamDesc}</p>
                         </div>
                         <div class="text-right">
-                            <span class="block text-xs uppercase tracking-wide opacity-70">Confianza</span>
+                            <span class="block text-xs uppercase tracking-wide opacity-70">${t_js.confidence}</span>
                             <span class="text-3xl font-mono font-bold">${(data.confidence * 100).toFixed(1)}%</span>
                         </div>
                     </div>
                 </div>
             `;
         } else {
-            // Diseño VERDE (Ham)
             resultArea.innerHTML = `
                 <div class="p-6 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
                     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-emerald-800 dark:text-emerald-300">
@@ -160,11 +245,11 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold">MENSAJE SEGURO</h3>
-                            <p class="text-sm opacity-90 mt-1">Este correo parece legítimo y no contiene patrones comunes de spam.</p>
+                            <h3 class="text-xl font-bold">${t_js.safeTitle}</h3>
+                            <p class="text-sm opacity-90 mt-1">${t_js.safeDesc}</p>
                         </div>
                         <div class="text-right">
-                            <span class="block text-xs uppercase tracking-wide opacity-70">Confianza</span>
+                            <span class="block text-xs uppercase tracking-wide opacity-70">${t_js.confidence}</span>
                             <span class="text-3xl font-mono font-bold">${(data.confidence * 100).toFixed(1)}%</span>
                         </div>
                     </div>
@@ -176,11 +261,15 @@ const description = "Herramienta gratuita basada en Machine Learning para detect
     function renderError() {
         const resultArea = document.getElementById('result-area');
         if (!resultArea) return;
+        
+        const i18nData = document.getElementById('i18n-data');
+        const t_js = i18nData ? i18nData.dataset : {} as DOMStringMap;
+
         resultArea.classList.remove('hidden');
         resultArea.innerHTML = `
             <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-center text-amber-800 dark:text-amber-200">
-                <p>⚠️ No se pudo conectar con el servidor.</p>
-                <p class="text-sm mt-1 opacity-75">Asegúrate de ejecutar <code>python index.py</code> en tu terminal.</p>
+                <p>⚠️ ${t_js.error}</p>
+                <p class="text-sm mt-1 opacity-75">Check API connection</p>
             </div>
         `;
     }

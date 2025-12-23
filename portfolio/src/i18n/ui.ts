@@ -46,7 +46,18 @@ export const ui = {
     'spam.ph_name': 'Tu nombre',
     'spam.ph_email': 'ejemplo@email.com',
     'spam.ph_subject': 'Ej: URGENTE! Has ganado un premio...',
-    'spam.ph_message': 'Copia y pega aquí el contenido del correo sospechoso...',
+    'spam.ph_message': 'Copia y pega aquí el contenido del mensaje...',
+
+    // Botones (Estos SÍ se traducen para la interfaz)
+    'spam.btn_load_spam': 'Carga ejemplo Spam',
+    'spam.btn_load_ham': 'Carga ejemplo Legítimo',
+    
+    // Contenido de los ejemplos (SIEMPRE EN INGLÉS)
+    'spam.ex_spam_subject': 'URGENT! You won $1,000,000 Lottery Prize',
+    'spam.ex_spam_message': 'Congratulations dear beneficiary. Your email has been selected to receive a cash prize. Please click here and send us your bank details immediately to process the payment. Act now.',
+    
+    'spam.ex_ham_subject': 'Project meeting tomorrow',
+    'spam.ex_ham_message': 'Hi Jorge, how are you? I am writing to confirm that tomorrow\'s meeting is still scheduled for 10:00 AM. We will review the API project progress. Best regards.',
   },
   en: {
     // Navigation Menu
@@ -86,6 +97,17 @@ export const ui = {
     'spam.ph_email': 'example@email.com',
     'spam.ph_subject': 'Ex: URGENT! You won a cash prize...',
     'spam.ph_message': 'Copy and paste the suspicious email content here...',
+
+    // Buttons
+    'spam.btn_load_spam': 'Try with Spam',
+    'spam.btn_load_ham': 'Try with Legitimate',
+
+    // Example Content (Always English)
+    'spam.ex_spam_subject': 'URGENT! You won $1,000,000 Lottery Prize',
+    'spam.ex_spam_message': 'Congratulations dear beneficiary. Your email has been selected to receive a cash prize. Please click here and send us your bank details immediately to process the payment. Act now.',
+
+    'spam.ex_ham_subject': 'Project meeting tomorrow',
+    'spam.ex_ham_message': 'Hi Jorge, how are you? I am writing to confirm that tomorrow\'s meeting is still scheduled for 10:00 AM. We will review the API project progress. Best regards.',
   },
 } as const;
 
