@@ -1,0 +1,197 @@
+---
+// src/pages/compruebaspam.astro
+import Layout from '../../layouts/Layout.astro';
+
+// Metadatos
+const title = "Detector de Spam IA | Cdev76";
+const description = "Herramienta gratuita basada en Machine Learning para detectar si un correo es Spam.";
+---
+
+<Layout title={title} description={description}>
+    
+    <section class="container mx-auto px-6 py-12 md:py-20 flex flex-col items-center justify-center min-h-[80vh]">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Detector de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">Spam</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-gray-400 leading-relaxed">
+                Pega el asunto y el mensaje. El modelo lo analizará y comprobará si se trata de spam o es legítimo.
+            </p>
+        </div>
+
+        <div class="w-full max-w-3xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl shadow-blue-900/10 dark:shadow-black/50 border border-slate-200 dark:border-gray-800 overflow-hidden relative">
+            
+            <div class="p-8 md:p-10 space-y-8">
+                
+                <form id="spam-form" class="space-y-6">
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="nombre" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Nombre (Opcional)</label>
+                            <input type="text" id="nombre" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="Tu nombre" />
+                        </div>
+                        <div class="space-y-2">
+                            <label for="email" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Email (Opcional)</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="ejemplo@email.com" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="asunto" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Asunto del Correo <span class="text-red-500">*</span></label>
+                        <input type="text" id="asunto" name="subject" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white placeholder-slate-400" placeholder="Ej: URGENT! You won a cash prize..." />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="mensaje" class="text-sm font-semibold text-slate-900 dark:text-gray-200">Cuerpo del Mensaje <span class="text-red-500">*</span></label>
+                        <textarea id="mensaje" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white placeholder-slate-400" placeholder="Copia y pega aquí el contenido del correo sospechoso..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2 text-lg">
+                        <span>Analizar con IA</span> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </button>
+
+                </form>
+
+                <div id="result-area" class="hidden animate-fade-in-up"></div>
+
+            </div>
+        </div>
+        
+        <p class="mt-8 text-sm text-slate-500 dark:text-gray-500 text-center">
+            Nota: Modelo entrenado con dataset en inglés (funciona mejor con Spam internacional).
+        </p>
+
+    </section>
+</Layout>
+
+<script>
+    // 1. Definimos la Interfaz para solucionar el error de TypeScript
+    interface ApiResponse {
+        is_spam: boolean;
+        label: string;
+        confidence: number;
+        analyzed_text_length?: number;
+    }
+
+    const form = document.getElementById('spam-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const resultArea = document.getElementById('result-area');
+
+    // IMPORTANTE: URL de tu API
+    const API_URL = 'http://127.0.0.1:5000/predict'; 
+
+    if (form && submitBtn && resultArea) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // UI Loading
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<span class="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></span> Procesando...`;
+            submitBtn.disabled = true;
+            resultArea.classList.add('hidden');
+
+            const asuntoInput = document.getElementById('asunto') as HTMLInputElement;
+            const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement;
+
+            const payload = {
+                subject: asuntoInput.value,
+                message: mensajeInput.value
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('Error de conexión con la API');
+
+                // AQUI ESTÁ EL TRUCO: Decimos a TS que la respuesta cumple la interfaz
+                const data = await response.json() as ApiResponse;
+                renderResult(data);
+
+            } catch (error) {
+                console.error(error);
+                renderError();
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // 2. Aplicamos el tipo ApiResponse al argumento 'data'
+    function renderResult(data: ApiResponse) {
+        const resultArea = document.getElementById('result-area');
+        if (!resultArea) return;
+
+        resultArea.classList.remove('hidden');
+
+        if (data.is_spam) {
+            // Diseño ROJO (Spam)
+            resultArea.innerHTML = `
+                <div class="p-6 rounded-xl bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800">
+                    <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-red-800 dark:text-red-300">
+                        <div class="p-3 bg-red-100 dark:bg-red-800 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold">¡ALERTA DE SPAM!</h3>
+                            <p class="text-sm opacity-90 mt-1">El sistema ha clasificado este mensaje como malicioso o no deseado.</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-xs uppercase tracking-wide opacity-70">Confianza</span>
+                            <span class="text-3xl font-mono font-bold">${(data.confidence * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Diseño VERDE (Ham)
+            resultArea.innerHTML = `
+                <div class="p-6 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
+                    <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left text-emerald-800 dark:text-emerald-300">
+                        <div class="p-3 bg-emerald-100 dark:bg-emerald-800 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold">MENSAJE SEGURO</h3>
+                            <p class="text-sm opacity-90 mt-1">Este correo parece legítimo y no contiene patrones comunes de spam.</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-xs uppercase tracking-wide opacity-70">Confianza</span>
+                            <span class="text-3xl font-mono font-bold">${(data.confidence * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function renderError() {
+        const resultArea = document.getElementById('result-area');
+        if (!resultArea) return;
+        resultArea.classList.remove('hidden');
+        resultArea.innerHTML = `
+            <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-center text-amber-800 dark:text-amber-200">
+                <p>⚠️ No se pudo conectar con el servidor.</p>
+                <p class="text-sm mt-1 opacity-75">Asegúrate de ejecutar <code>python index.py</code> en tu terminal.</p>
+            </div>
+        `;
+    }
+</script>
+
+<style>
+    @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.5s ease-out forwards;
+    }
+</style>

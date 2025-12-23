@@ -22,7 +22,31 @@ export const ui = {
     // Textos generales (Footer, etc.)
     'footer.rights': 'Todos los derechos reservados',
     'projects.title': 'Proyectos Destacados',
-    'projects.subtitle': 'Portfolio'
+    'projects.subtitle': 'Portfolio',
+
+    'spam.title': 'Detector de Spam',
+    'spam.desc': 'Pega el asunto y el mensaje. El modelo lo analizará y comprobará si se trata de spam o es legítimo.',
+    'spam.name': 'Nombre (Opcional)',
+    'spam.email': 'Email (Opcional)',
+    'spam.subject': 'Asunto del Correo',
+    'spam.message': 'Cuerpo del Mensaje',
+    'spam.analyze_btn': 'Analizar con IA',
+    'spam.note': 'Nota: Modelo entrenado con dataset en inglés (funciona mejor con Spam internacional).',
+    
+    // Textos para JavaScript (Client-side)
+    'spam.js.processing': 'Procesando...',
+    'spam.js.spam_alert': '¡ALERTA DE SPAM!',
+    'spam.js.spam_desc': 'El sistema ha clasificado este mensaje como malicioso o no deseado.',
+    'spam.js.safe_title': 'MENSAJE SEGURO',
+    'spam.js.safe_desc': 'Este correo parece legítimo y no contiene patrones comunes de spam.',
+    'spam.js.confidence': 'Confianza',
+    'spam.js.error': 'No se pudo conectar con el servidor.',
+    
+    // Placeholders
+    'spam.ph_name': 'Tu nombre',
+    'spam.ph_email': 'ejemplo@email.com',
+    'spam.ph_subject': 'Ej: URGENTE! Has ganado un premio...',
+    'spam.ph_message': 'Copia y pega aquí el contenido del correo sospechoso...',
   },
   en: {
     // Navigation Menu
@@ -38,7 +62,30 @@ export const ui = {
     // General Text
     'footer.rights': 'All rights reserved',
     'projects.title': 'Featured Projects',
-    'projects.subtitle': 'Portfolio'
+    'projects.subtitle': 'Portfolio',
+    'spam.title': 'AI Spam Detector',
+    'spam.desc': 'Paste the subject and message. Our AI model will analyze it and check if it is spam or legitimate.',
+    'spam.name': 'Name (Optional)',
+    'spam.email': 'Email (Optional)',
+    'spam.subject': 'Email Subject',
+    'spam.message': 'Message Body',
+    'spam.analyze_btn': 'Analyze with AI',
+    'spam.note': 'Note: Model trained on English dataset (works best with international Spam).',
+    
+    // JS Texts
+    'spam.js.processing': 'Processing...',
+    'spam.js.spam_alert': 'SPAM DETECTED!',
+    'spam.js.spam_desc': 'The system classified this message as malicious or unwanted.',
+    'spam.js.safe_title': 'SAFE MESSAGE',
+    'spam.js.safe_desc': 'This email looks legitimate and contains no common spam patterns.',
+    'spam.js.confidence': 'Confidence',
+    'spam.js.error': 'Could not connect to the server.',
+
+    // Placeholders
+    'spam.ph_name': 'Your name',
+    'spam.ph_email': 'example@email.com',
+    'spam.ph_subject': 'Ex: URGENT! You won a cash prize...',
+    'spam.ph_message': 'Copy and paste the suspicious email content here...',
   },
 } as const;
 
