@@ -9,10 +9,33 @@ import pasapalabra from '../../assets/pasapalabracompleto.jpeg'
 //import mcp from '../../assets/mcp.png';
 import spam from '../../assets/spam.jpg';
 import api2 from '../../assets/api.png';
+import asyncapi from '../../assets/mcpgen3.png';
 
 // --- DATOS DE PROYECTOS ---
 
 const PROJECTS = [
+    {
+        title: "Generador de servers MCP",
+        description: "Generador automático de servidores MCP orientados a interactuar con arquitecturas EDA a partir de documentos AsyncAPI. La herramienta utiza un template personalizado y el core de generación de AsyncAPI para parsear el fichero .yaml a código python.",
+        tags: ["AsyncAPI", "JavaScript", "Python", "MCP", "EDA", "Kakfa"],
+        image: asyncapi, 
+        github: "https://github.com/CnAs076/Esp32-rosco-game",
+        demo: "/es/generador-mcp", 
+        category: "Software - AI",
+        status: "En progreso",
+        statusColor: "bg-amber-500/90"
+    },
+    {
+        title: "Modelo para detección de spam",
+        description: "Sistema inteligente capaz de clasificar mensajes del formulario en Spam o Legítimos utilizando el algoritmo Naive Bayes.",
+        tags: ["Machine learning","Python","APIs"],
+        image: spam,
+        github: null, 
+        demo: "/es/comprueba-spam",
+        category: "Software - AI",
+        status: "Terminado",
+        statusColor: "bg-emerald-500/90"
+    },
     {
         title: "Pasapalabra IoT con ESP32",
         description: "Material educativo para niños. El sistema aloja una aplicación web dentro del propio ESP32 que se comunica vía WebSockets para controlar la iluminación del rosco en tiempo real. La estructura está fabricada con materiales reciclados y piezas impresas en 3D",
@@ -34,7 +57,7 @@ const PROJECTS = [
         demo: null,
         category: "Hardware & IoT",
         status: "Pausado",
-        statusColor: "bg-amber-500/90"
+        statusColor: "bg-red-500/90"
     },
     {
         title: "Mi primer servidor MCP",
@@ -43,17 +66,6 @@ const PROJECTS = [
         image: api2,
         github: "https://github.com/CnAs076/McpResearch", 
         demo: null,
-        category: "Software - AI",
-        status: "Terminado",
-        statusColor: "bg-emerald-500/90"
-    },
-    {
-        title: "Modelo para detección de spam",
-        description: "Sistema inteligente capaz de clasificar mensajes del formulario en Spam o Legítimos utilizando el algoritmo Naive Bayes.",
-        tags: ["Machine learning","Python","APIs"],
-        image: spam,
-        github: null, 
-        demo: "/es/comprueba-spam",
         category: "Software - AI",
         status: "Terminado",
         statusColor: "bg-emerald-500/90"
