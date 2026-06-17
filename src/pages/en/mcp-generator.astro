@@ -1,0 +1,59 @@
+---
+// src/pages/en/mcp-generator.astro
+import Layout from '../../layouts/Layout.astro';
+import McpGenerator from '../../components/McpGenerator';
+---
+
+<Layout title="MCP Server Generator | Portfolio">
+
+    <section class="relative min-h-screen py-20 md:py-32 overflow-hidden bg-gradient-to-b from-blue-200/60 via-blue-100/40 to-blue-50 dark:from-blue-900/20 dark:to-gray-950">
+
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-400/30 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <a href="/en/" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-800 dark:hover:text-blue-300 transition-colors mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Back to Portfolio
+                </a>
+
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
+                    MCP <span class="bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text">Server Generator</span>
+                </h1>
+
+                <p class="text-lg text-slate-700 dark:text-gray-400 leading-relaxed">
+                    Generate a fully functional MCP server in Python, ready to interact with your EDA architecture through Kafka.
+                </p>
+            </div>
+
+            <div class="w-full mx-auto bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm p-4 md:p-8 rounded-3xl border border-blue-200 dark:border-gray-800 shadow-xl shadow-blue-500/10">
+                <McpGenerator client:only="react" />
+            </div>
+
+            <div class="max-w-4xl mx-auto mt-12 grid md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 font-bold text-xl">1</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Define your API</h3>
+                    <p class="text-sm text-slate-600 dark:text-gray-400">Write or paste your AsyncAPI 3.0.0 document. Make sure to properly define the channels and payloads.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 font-bold text-xl">2</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Generate the Code</h3>
+                    <p class="text-sm text-slate-600 dark:text-gray-400">Hit the generate button. The backend will parse the YAML and apply the custom template.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 font-bold text-xl">3</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Download & Run</h3>
+                    <p class="text-sm text-slate-600 dark:text-gray-400">You'll receive a .zip with the Python code ready to go. Install the dependencies and connect your favourite LLM.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</Layout>

@@ -9,10 +9,22 @@ import pasapalabra from '../../assets/pasapalabracompleto.jpeg'
 //import mcp from '../../assets/mcp.png';
 import spam from '../../assets/spam.jpg';
 import api2 from '../../assets/api.png';
+import asyncapi from '../../assets/mcpgen3.png';
 
 // --- PROJECT DATA (Translated) ---
 
 const PROJECTS = [
+    {
+        title: "MCP Server Generator",
+        description: "Automatic MCP server generator designed to interact with EDA architectures from AsyncAPI documents. The tool uses a custom template and the AsyncAPI generation core to parse the .yaml file into Python code.",
+        tags: ["AsyncAPI", "JavaScript", "Python", "MCP", "EDA", "Kafka"],
+        image: asyncapi,
+        github: "https://github.com/cdev-76/AsyncAPI-Mcp-gen",
+        demo: "/en/mcp-generator",
+        category: "Software - AI",
+        status: "Finished",
+        statusColor: "bg-emerald-500/90"
+    },
     {
         title: "IoT Pasapalabra with ESP32",
         description: "Educational material for children. The system hosts a web application within the ESP32 itself that communicates via WebSockets to control the ring lighting in real-time. The structure is made with recycled materials and 3D printed parts.",
