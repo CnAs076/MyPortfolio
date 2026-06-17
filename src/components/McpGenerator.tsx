@@ -147,9 +147,9 @@ operations:
   const [isChatStreaming, setIsChatStreaming] = useState(false);
   const [pendingYaml, setPendingYaml] = useState<string | null>(null);
   const autoApplyRef = useRef(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const isAtBottomRef = useRef(true);
+  const savedScrollRef = useRef<number | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Auth state
@@ -197,21 +197,30 @@ operations:
   const handleChatScroll = () => {
     const container = chatContainerRef.current;
     if (!container) return;
+    savedScrollRef.current = container.scrollTop;
     const distanceFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
     isAtBottomRef.current = distanceFromBottom <= 60;
   };
 
   useEffect(() => {
     if (isAtBottomRef.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      const container = chatContainerRef.current;
+      if (container) container.scrollTop = container.scrollHeight;
     }
   }, [messages]);
 
   useEffect(() => {
     if (chatOpen) {
       setTimeout(() => {
-        if (chatUnlocked) inputRef.current?.focus();
-        else accessCodeRef.current?.focus();
+        if (chatUnlocked) {
+          inputRef.current?.focus();
+          const container = chatContainerRef.current;
+          if (container) {
+            container.scrollTop = savedScrollRef.current ?? container.scrollHeight;
+          }
+        } else {
+          accessCodeRef.current?.focus();
+        }
       }, 100);
     }
   }, [chatOpen, chatUnlocked]);
@@ -614,7 +623,6 @@ operations:
                       </div>
                     </div>
                   ))}
-                  <div ref={messagesEndRef} />
                 </div>
 
                 {/* Pending YAML action bar */}
